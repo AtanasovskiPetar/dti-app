@@ -20,10 +20,35 @@ function App() {
     }
 
     setLoading(true);
-    // Here you would make the actual API call to get the IC50 prediction
-    // For now, we'll simulate a response
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setResult(`Predicted IC50: ${(Math.random() * 100).toFixed(2)} nM`);
+    
+    try {
+      const response = await fetch('http://localhost:8000/predict', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        drug: selectedDrug.smiles,
+        protein: selectedProtein.sequence,
+      }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Data:', data);
+      if (data?.predicted_affinity) {
+        setResult(`Predicted IC50: ${data.predicted_affinity} nM`);
+      }
+      if (data.affinity) {
+        setResult(`Affinity is Data base: ${data.affinity / 1000} nM`);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setResult('Error predicting IC50');
+    }
     setLoading(false);
   };
 
