@@ -17,7 +17,7 @@ except Exception as e:
     df = None
     print(f"Warning: Failed to load dataset - {e}")
 
-MODEL_PATH = "random_forest_model.pkl"
+MODEL_PATH = "model.pkl"
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model file {MODEL_PATH} not found!")
 
