@@ -11,7 +11,7 @@ The model uses **Random Forest Regressor** to predict the binding affinity betwe
 
 ## Research Paper
 
-A detailed explanation of the project, including methodology, results, and discussion, can be found in the research paper. You can download it [here](link-to-your-research-paper.pdf).
+A detailed explanation of the project, including methodology, results, and discussion, can be found in the [research paper](resources/Drug_Target_Interaction_Prediction.pdf).
 
 ## Installation Instructions
 
